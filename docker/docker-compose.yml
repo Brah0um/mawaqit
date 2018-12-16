@@ -1,27 +1,70 @@
-version: '2'
+---
+version: '3.3'
 
 services:
-  mawaqit:
-    container_name : mawaqit
-    build: .
-    tty: true
-    links:
-      - mawaqit_db:mysql
-    ports:
-      - "1100:80"
+  php:
+    image: mawaqit/php-fpm:7.1
     volumes:
-      - ../:/var/www
-      - $SSH_AUTH_SOCK:/ssh-agent
+      - ../:/var/www/html
+      - composer:/var/www/.composer
+    configs:
+      - source: php_config
+        target: /usr/local/etc/php/php.ini
+    networks:
+      private: ~
+      db: ~
+
+  nginx:
+    image: nginx
+    volumes:
+      - ../:/var/www/html
+    deploy:
+      labels:
+        traefik.frontend.rule: "Host:mawaqit.local"
+        traefik.docker.network: "web_reverse_proxy"
+        traefik.port: "80"
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/conf.d/default.conf
+    networks:
+      private: ~
+      web_reverse_proxy: ~
+
+  db:
+    image: mysql:8.0.3
+    volumes:
+      - db-data:/var/lib/mysql
     environment:
-      SSH_AUTH_SOCK: /ssh-agent
-      
-  mawaqit_db:
-    container_name : mawaqit_db
-    image: mysql:5.6
-    expose:
-      - "1106"
-    ports:
-      - "1106:3306"
-    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: mawaqit
       MYSQL_DATABASE: mawaqit
-      MYSQL_ROOT_PASSWORD: mawaqit
+      MYSQL_PASSWORD: mawaqit
+    networks:
+      db: ~
+
+  adminer:
+    image: clue/adminer
+    deploy:
+      labels:
+        traefik.frontend.rule: "Host:adminer.mawaqit.local"
+        traefik.docker.network: "web_reverse_proxy"
+        traefik.port: "80"
+    networks:
+      db: ~
+      web_reverse_proxy: ~
+
+configs:
+  php_config:
+    file: ./config/php.ini
+  nginx_config:
+    file: ./config/default.conf
+
+volumes:
+  composer: ~
+  db-data: ~
+
+networks:
+  private: ~
+  db: ~
+  web_reverse_proxy:
+    external: true

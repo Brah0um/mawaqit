@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ $# -lt 1 ]
-then
-        echo "Usage : ./dock app/console c:c"
-        exit
-fi
-
-docker exec -it mawaqit "$@"

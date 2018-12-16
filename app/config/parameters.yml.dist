@@ -1,10 +1,10 @@
 parameters:
     name: 'Mawaqit'
-    database_host: 127.0.0.1
+    database_host: db
+    database_name: mawaqit
+    database_user: mawaqit
+    database_password: mawaqit
     database_port: ~
-    database_name: symfony
-    database_user: root
-    database_password: ~
     mailer_transport: smtp
     mailer_host: SSL0.OVH.NET
     mailer_port: 587
