@@ -5,6 +5,8 @@ stack_name = mawaqit
 php_sources         ?= .
 phpcs_ignored_files ?= vendor/*,var/cache/*
 
+node_version = 9.5.0
+
 php_container_id = $(shell docker ps --filter name="$(stack_name)_php" -q)
 mysql_container_id = $(shell docker ps --filter name="$(stack_name)_mysql" -q)
 user = $(shell id -u)
@@ -102,6 +104,17 @@ install: composer-install
 	docker exec -it -u $(user) "$(php_container_id)" php bin/console doctrine:database:create --if-not-exists
 	docker exec -it -u $(user) "$(php_container_id)" php bin/console doctrine:schema:update --force
 	docker exec -it -u $(user) "$(php_container_id)" php bin/console hautelook:fixtures:load -n
+
+
+# NODE
+
+.PHONY: yarn
+yarn:
+	docker run --rm -i -v `pwd`:/usr/src/app -w /usr/src/app node:$(node_version) yarn $(cmd)
+
+.PHONY: npm
+npm:
+	docker run --rm -i -v `pwd`:/usr/src/app -w /usr/src/app node:$(node_version) npm $(cmd)
 
 
 # SYMFONY
