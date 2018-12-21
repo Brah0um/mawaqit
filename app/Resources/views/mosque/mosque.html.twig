@@ -154,7 +154,12 @@
             </div>
             <div class="col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
                 <div class="ar">{{ 'jumua'|trans }}</div>
-                <div class="prayer joumouaa-id"></div>
+                <div class="prayer">
+                    <div class="joumouaa-id"></div>
+                    {% if mosque.configuration.jumuaTime2 is not null %}
+                        <div  class="joumouaa2-id"><span></span></div>
+                    {% endif %}
+                </div>
             </div>
 
             {% if mosque.configuration.showNextAdhanCountdown %}

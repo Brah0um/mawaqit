@@ -54,6 +54,11 @@ class Configuration
     private $jumuaTime = "13:30";
 
     /**
+     * @var string
+     */
+    private $jumuaTime2;
+
+    /**
      * @var boolean
      */
     private $jumuaAsDuhr = false;
@@ -351,6 +356,23 @@ class Configuration
     {
         return $this->jumuaTime;
     }
+
+    /**
+     * @return string
+     */
+    public function getJumuaTime2()
+    {
+        return $this->jumuaTime2;
+    }
+
+    /**
+     * @param string $jumuaTime2
+     */
+    public function setJumuaTime2($jumuaTime2): void
+    {
+        $this->jumuaTime2 = $jumuaTime2;
+    }
+
 
     function isJumuaAsDuhr()
     {

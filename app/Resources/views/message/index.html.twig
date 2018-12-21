@@ -43,7 +43,7 @@
             </div>
 
             <div class="hidden-xs hidden-sm">
-                <form action="{{ path('message_bulk_change_status') }}" method="post">
+                <form action="{{ path('message_bulk_change_status', {mosque: mosque.id}) }}" method="post">
                     <button class="btn btn-primary mb-1" type="text">{{ 'change_statuses'|trans }}</button>
                     <table class="table table-inverse">
                         <thead>
@@ -103,7 +103,7 @@
             </div>
 
             <div class="hidden-md hidden-lg">
-                <form action="{{ path('message_bulk_change_status') }}" method="post">
+                <form action="{{ path('message_bulk_change_status',  {mosque: mosque.id}) }}" method="post">
                     <button class="btn btn-primary mb-1" type="text">{{ 'change_statuses'|trans }}</button>
                     {% for message in mosque.messages %}
                         <div class="row" style="border-bottom: 1px solid #ccc; padding: 10px 0; ">

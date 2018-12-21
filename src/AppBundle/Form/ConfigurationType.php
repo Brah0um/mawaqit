@@ -109,6 +109,13 @@ class ConfigurationType extends AbstractType
                     'placeholder' => 'hh:mm'
                 ]
             ])
+            ->add('jumuaTime2', null, [
+                'constraints' => new Regex(['pattern' => $timePattern]),
+                'attr' => [
+                    'help' => $this->translator->trans('configuration.form.jumuaTime2.title'),
+                    'placeholder' => 'hh:mm'
+                ]
+            ])
             ->add('jumuaAsDuhr', CheckboxType::class, [
                 'required' => false,
             ])

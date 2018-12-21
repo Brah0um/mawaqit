@@ -40,14 +40,13 @@ $("#type").bind("change", function (event) {
 typeDisplayHandler();
 
 function initMap() {
+    var lat= parseFloat($("#latitude").val());
+    var lng= parseFloat($("#longitude").val());
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 2,
-        center: {lat: 48, lng: 3},
-        streetViewControl: false,
-        mapTypeControl: false,
-        fullscreenControl: false
+        zoom: 4,
+        center: {lat: lat, lng: lng}
     });
-    new google.maps.Marker({position: {lat: parseFloat($("#latitude").val()), lng: parseFloat($("#longitude").val())}, map: map});
+    new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
     google.maps.event.addListener(map, "click", function (e) {
         var latLng = e.latLng;
         $("#latitude").val(latLng.lat());

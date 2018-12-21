@@ -132,6 +132,7 @@ class PrayerTime
             'latitude' => $mosque->getLatitude(),
             'longitude' => $mosque->getLongitude(),
             'jumua' => $conf->getJumuaTime(),
+            'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,
             'times' => [],
             'iqama' => $conf->getWaitingTimes(),

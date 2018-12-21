@@ -75,6 +75,15 @@ body {
     font-size: 140%;
 }
 
+.joumouaa2-id {
+    color: yellowgreen;
+    margin-top: -10px;
+}
+
+.joumouaa2-id > span{
+    border-top: 2px yellowgreen solid;
+}
+
 .important {
     color: #B0413E;
 }

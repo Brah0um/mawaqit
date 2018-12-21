@@ -251,6 +251,9 @@ configuration:
         jumuaTime:
             label: Jumu'à time
             title: "If this value is entered, it will be displayed on the screen. Default 13:00 in winter and 14:00 in summer"
+        jumuaTime2:
+            label: 2nd Jumu'à time
+            title: "If your mosque dos a second jumu`a please fill this field"
         jumuaAsDuhr:
             label: The time of jumu'a like Dhuhr
         noJumua:

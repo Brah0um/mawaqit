@@ -13,6 +13,10 @@ AppBundle\Entity\Configuration:
             type: string
             length: 255
             nullable: true
+        jumuaTime2:
+            type: string
+            length: 255
+            nullable: true
         jumuaAsDuhr:
             type: boolean             
         noJumua:

@@ -121,11 +121,11 @@ class MosqueController extends Controller
      * @Route("/{slug}/has-been-updated", name="mosque_has_been_updated", options={"i18n"="false"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function hasUpdatedAjaxAction(Request $request, Mosque $mosque)
+    public function hasBeenUpdatedAjaxAction(Request $request, Mosque $mosque)
     {
         $lastUpdatedDate = $request->query->get("lastUpdatedDate");
         if (empty($lastUpdatedDate)) {
-            throw new \RuntimeException();
+            return new JsonResponse(["hasBeenUpdated" => false]);
         }
 
         $hasBeenUpdated = $this->get("app.prayer_times")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);

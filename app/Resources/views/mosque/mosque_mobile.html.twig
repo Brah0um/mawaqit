@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="{{ path('manifest', {mosque: mosque.id}) }}">
     {% include "partial/favicon.html.twig" %}
 
     {% stylesheets
@@ -278,6 +279,12 @@
     var latitude = {{ mosque.latitude }};
     var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js');
+        });
+    }
 </script>
 
 {% javascripts
@@ -296,5 +303,6 @@
     '@AppBundle/Resources/public/prayer-times/js/main_mobile.js' %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
 </body>
 </html>

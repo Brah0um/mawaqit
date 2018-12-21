@@ -491,6 +491,9 @@ configuration:
         jumuaTime:
             label: Heure du jumu`a
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
+        jumuaTime2:
+            label: 2ème Jumu'à
+            title: "Si votre mosquée fait une deuxième jumu`a saisissez une valeur"
         jumuaAsDuhr:
             label: L'heure du jumu'a pareil que Dhuhr
         noJumua:

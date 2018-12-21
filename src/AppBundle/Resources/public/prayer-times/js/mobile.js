@@ -9,7 +9,7 @@ $('#navigate').click(function (e) {
         $url = "maps://maps.google.com/maps?daddr=";
     }
 
-    window.open($url + prayer.confData.latitude + "," + prayer.confData.longitude + "&amp;ll=");
+    window.open($url + latitude + "," + longitude + "&amp;ll=");
 });
 
 

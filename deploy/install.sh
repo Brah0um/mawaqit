@@ -62,6 +62,8 @@ composer install --no-dev --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
+#npm install
+
 # backup DB if prod deploy
 if [ "$env" == "prod" ]; then
     echo "Backup prod DB"

@@ -181,11 +181,11 @@ class MessageController extends Controller
 
     /**
      * @param Request $request
-     * @Route("/message/bulk-change-status", name="message_bulk_change_status")
+     * @Route("/mosque/{mosque}/message-bulk-change-status", name="message_bulk_change_status")
      * @Method("POST")
      * @return Response
      */
-    public function bulkChangeStatusAction(Request $request)
+    public function bulkChangeStatusAction(Request $request, Mosque $mosque)
     {
         $messages = $request->request->get('status');
         $em = $this->getDoctrine()->getManager();
@@ -199,6 +199,6 @@ class MessageController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('message_index', ['mosque'=> $message->getMosque()->getId()]);
+        return $this->redirectToRoute('message_index', ['mosque'=> $mosque->getId()]);
     }
 }
